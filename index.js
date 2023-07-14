@@ -19,7 +19,7 @@ app.use(express.json())
 db()
 
 //CONFIGURAR CORS
-const whiteList = [process.env.FRONTEND_URL, process.env.BACKEND_URL]
+const whiteList = [process.env.FRONTEND_URL, process.env.BACKEND_URL, undefined]
 if (process.argv[2] === '--postman') {
 	whiteList.push(undefined)
 }
