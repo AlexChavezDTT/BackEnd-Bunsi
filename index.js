@@ -37,6 +37,43 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
+app.get("/", (req, res) => {
+	//res.status(404);
+	res.json({
+		msg: "Bienvenido al BackEnd de Bunsi",
+		author: "DisrupTT S.A. de C.V.",
+		año: "2023",
+		mes: "Julio",
+		version: "1.0.0",
+		desarrolladores: [
+			{
+				name: "Alejandro Chavez",
+				correo: "alejandro.chavez@disruptt.mx",
+				puesto: "FrontEnd & BackEnd"
+			},
+			{
+				name: "Conrado Carrillo",
+				correo: "conrado.carrillo@disruptt.mx",
+				puesto: "FrontEnd & BackEnd"
+			},
+		],
+		tecnologias: [
+			{
+				name: "NodeJS",
+				version: "19.0.1"
+			},
+			{
+				name: "ExpressJS",
+				version: "4.18.2"
+			},
+			{
+				name: "MongoDB",
+				version: "1.38.2"
+			},
+		]
+	});
+});
+
 //DEFINIR RUTA
 app.use('/api/services', servicesRoutes)
 app.use('/api/auth', authRoutes)
