@@ -1,4 +1,5 @@
 import Ownerships from '../models/Ownerships.js'
+import User from '../models/Users.js'
 import { validateObjectId, handleConsoleColorInitFunction, handleConsoleColorError, handleNotFoundError } from '../utils/index.js';
 
 const creatOwnerships = async (req, res) => {
@@ -31,6 +32,33 @@ const getOwnerships = async (req, res) => {
 	try {
 		const ownerships = await Ownerships.find()
 		res.json(ownerships)
+	} catch (error) {
+		handleConsoleColorError(error.message)
+	}
+}
+
+const getOwnershipsByUser = async (req, res) => {
+	handleConsoleColorInitFunction("getOwnershipsByUser")
+	try {
+		const id_user = req.params.user;
+
+		const response_user = await User.findById(id_user)
+		const properties_user = response_user.properties
+		if (!response_user) {
+			return handleNotFoundError('No existe el usuario')
+		}
+
+		const ownerships_user = []
+		for (let index = 0; index < properties_user.length; index++) {
+			const element = properties_user[index];
+			const ownership = await Ownerships.findById(element.id_propertie)
+			ownerships_user.push({
+				id: ownership._id,
+				name: ownership.titulo
+			})
+		}
+
+		res.json(ownerships_user)
 	} catch (error) {
 		handleConsoleColorError(error.message)
 	}
@@ -122,5 +150,6 @@ export {
 	getOwnerships,
 	getOwnershipsById,
 	updateOwnerships,
-	deleteOwnerships
+	deleteOwnerships,
+	getOwnershipsByUser
 }

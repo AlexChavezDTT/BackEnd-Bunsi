@@ -52,6 +52,21 @@ const register = async (req, res) => {
 	}
 }
 
+const update = async (req, res) => {
+	try {
+		const user = req.params.user
+		const body = req.body
+
+		User.findByIdAndUpdate(user, body).then(doc => {
+			res.json({
+				msg: `El usuario ${doc.email} se ha actualizado correctamente`
+			})
+		});
+	} catch (error) {
+		console.log("error", error)
+	}
+}
+
 const verifyAccount = async (req, res) => {
 	const { token } = req.params
 	const user = await User.findOne({ token })
@@ -107,6 +122,7 @@ const user = async (req, res) => {
 
 export {
 	register,
+	update,
 	verifyAccount,
 	login,
 	user

@@ -32,6 +32,11 @@ const userSchema = mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
+	properties: [{
+		id_propertie: {
+			type: mongoose.Schema.Types.ObjectId
+		}
+	}]
 })
 
 userSchema.pre('save', async function (next) {
