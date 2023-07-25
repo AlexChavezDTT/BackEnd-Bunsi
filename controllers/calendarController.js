@@ -311,10 +311,8 @@ const getWeeksOfMonth = async (req, res) => {
 
 	response.forEach(element => {
 		const initial_date = new Date(element.fecha_inicio)
-		const finish_date = new Date(element.fecha_final)
 
-		console.log(initial_date.getFullYear(), initial_date.getMonth() + 1)
-
+		console.log(initial_date.getMonth() + 1 === month)
 		if (initial_date.getFullYear() === year) {
 			if (initial_date.getMonth() + 1 === month) {
 				info.push({
