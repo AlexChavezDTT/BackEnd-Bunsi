@@ -32,6 +32,9 @@ const userSchema = mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
+	photo: {
+		type: String
+	},
 	properties: [{
 		id_propertie: {
 			type: mongoose.Schema.Types.ObjectId

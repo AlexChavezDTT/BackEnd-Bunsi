@@ -21,6 +21,12 @@ const calendarSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
+	temporada: {
+		type: String
+	},
+	semana: {
+		type: Number
+	},
 	fecha_creacion: {
 		type: Date,
 		required: true

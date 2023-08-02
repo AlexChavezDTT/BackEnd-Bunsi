@@ -1,6 +1,12 @@
 import Calendar from '../models/Calendar.js'
-import { calendar } from '../data/calendar.js'
+import { calendarData } from '../data/calendar.js'
 import { validateObjectId, handleConsoleColorInitFunction, handleConsoleColorError, handleNotFoundError } from '../utils/index.js';
+
+let calendar = calendarData
+
+const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+	"Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+];
 
 const createCalendar = async (req, res) => {
 	try {
@@ -21,45 +27,70 @@ const createCalendar = async (req, res) => {
 	}
 }
 
+const newYear = () => {
+	calendarData.forEach(cal => {
+		cal.año = 2023
+		cal.semanas = 0
+		cal.id_propiedad = 0
+
+		cal.dias.forEach(dia => {
+			dia.tipo = "sin uso"
+			dia.temporada = ""
+			dia.semana = ""
+			dia.mes_compartido = ""
+			dia._id = 0
+		})
+	})
+}
+
+const calendarPrototipe = (monthString, initial_date, finish_date, element) => {
+	calendar = calendarData
+	calendar.forEach((cal, i, array) => {
+		if (cal.mes == monthString) {
+			cal.dias.forEach(dia => {
+				if (finish_date.getMonth() + 1 == initial_date.getMonth() + 1) {
+					if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
+						dia.tipo = element.tipo
+						dia.temporada = element.temporada
+						dia.semana = element.semana
+						dia._id = element._id
+					}
+				}
+				else if (finish_date.getMonth() + 1 > initial_date.getMonth() + 1) {
+					if (dia.dia >= initial_date.getDate() && dia.dia > finish_date.getDate()) {
+						dia.tipo = element.tipo
+						dia.temporada = element.temporada
+						dia.semana = element.semana
+						dia.mes_compartido = monthNames[finish_date.getMonth()]
+						dia._id = element._id
+					}
+					array[i + 1].dias.forEach(diaNM => {
+						if (diaNM.dia <= finish_date.getDate()) {
+							diaNM.tipo = element.tipo
+							diaNM.temporada = element.temporada
+							diaNM.semana = element.semana
+							diaNM.mes_compartido = monthNames[initial_date.getMonth()]
+							diaNM._id = element._id
+						}
+					})
+				}
+			})
+		}
+	})
+}
+
 const getMonths = async (req, res) => {
 	try {
-		const id_property = req.params.property;
-		const id_user = req.params.user;
+		newYear()
+		const id_property = req.params.property
+		const id_user = req.params.user
+		const year = req.params.year
+		let calendar = calendarData
 
 		const response = await Calendar.find({ id_propiedad: id_property, id_usuario: id_user })
 		if (!response) {
 			return handleNotFoundError('No existe meses para esta propiedad', res)
 		}
-
-		const info = [];
-
-		//Enero
-		/* let obj_temp_enero = {}
-		obj_temp_enero["Enero"] = {
-			año: "",
-			dias: []
-		}
-		for (let index = 1; index = 31; index++) {
-			response.forEach(element => {
-				const initial_date = new Date(element.fecha_inicio)
-				const finish_date = new Date(element.fecha_final)
-				obj_temp_enero["Enero"].año = initial_date.getFullYear()
-				if (initial_date.getMonth() + 1 == 1) {
-					if (index >= initial_date.getDate() && index <= finish_date.getDate()) {
-						obj_temp_enero["Enero"].dias.push({
-							dia: index,
-							tipo: element.tipo
-						})
-					} else {
-						obj_temp_enero["Enero"].dias.push({
-							dia: index,
-							tipo: "Sin asignar"
-						})
-					}
-				}
-			})
-			info.push(obj_temp_enero)
-		} */
 
 		const array_count = {
 			enero: 0,
@@ -79,212 +110,135 @@ const getMonths = async (req, res) => {
 		response.forEach(element => {
 			const initial_date = new Date(element.fecha_inicio)
 			const finish_date = new Date(element.fecha_final)
-			if (initial_date.getMonth() + 1 == 1) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Enero") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
+			console.log(initial_date.getFullYear)
+			if (initial_date.getFullYear() == year) {
+				console.log(initial_date.getMonth() + 1)
+				switch (initial_date.getMonth() + 1) {
+					case 1:
+						calendarPrototipe("Enero", initial_date, finish_date, element)
+						array_count.enero += 1
+						calendar[0].año = year
+						calendar[0].semanas = array_count.enero
+						calendar[0].id_propiedad = element.id_propiedad
+						break;
+					case 2:
+						/* calendar.forEach(cal => {
+							if (cal.mes == "Febrero") {
+								cal.dias.forEach(dia => {
+									if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
+										dia.tipo = element.tipo
+										dia.temporada = element.temporada
+										dia.semana = element.semana
+										dia._id = element._id
+									}
+								})
 							}
-						})
-					}
-				})
-				array_count.enero += 1
-				calendar[0].semanas = array_count.enero
-				calendar[0].id_propiedad = element.id_propiedad
-			}
-			if (initial_date.getMonth() + 1 == 2) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Febrero") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
-							}
-						})
-					}
-				})
-				array_count.febrero += 1
-				calendar[1].semanas = array_count.febrero
-				calendar[1].id_propiedad = element.id_propiedad
-			}
-			if (initial_date.getMonth() + 1 == 3) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Marzo") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
-							}
-						})
-					}
-				})
-				array_count.marzo += 1
-				calendar[2].semanas = array_count.marzo
-				calendar[2].id_propiedad = element.id_propiedad
-			}
-			if (initial_date.getMonth() + 1 == 4) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Abril") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
-							}
-						})
-					}
-				})
-				array_count.abril += 1
-				calendar[3].semanas = array_count.abril
-				calendar[3].id_propiedad = element.id_propiedad
-			}
-			if (initial_date.getMonth() + 1 == 5) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Mayo") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
-							}
-						})
-					}
-				})
-				array_count.mayo += 1
-				calendar[4].semanas = array_count.mayo
-				calendar[4].id_propiedad = element.id_propiedad
-			}
-			if (initial_date.getMonth() + 1 == 6) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Junio") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
-							}
-						})
-					}
-				})
-				array_count.junio += 1
-				calendar[5].semanas = array_count.junio
-				calendar[5].id_propiedad = element.id_propiedad
-			}
-			if (initial_date.getMonth() + 1 == 7) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Julio") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
-							}
-						})
-					}
-				})
-				array_count.julio += 1
-				calendar[6].semanas = array_count.julio
-				calendar[6].id_propiedad = element.id_propiedad
-			}
-			if (initial_date.getMonth() + 1 == 8) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Agosto") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
-							}
-						})
-					}
-				})
-				array_count.agosto += 1
-				calendar[7].semanas = array_count.agosto
-				calendar[7].id_propiedad = element.id_propiedad
-			}
-			if (initial_date.getMonth() + 1 == 9) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Septiembre") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
-							}
-						})
-					}
-				})
-				array_count.septiembre += 1
-				calendar[8].semanas = array_count.septiembre
-				calendar[8].id_propiedad = element.id_propiedad
-			}
-			if (initial_date.getMonth() + 1 == 10) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Octubre") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
-							}
-						})
-					}
-				})
-				array_count.octubre += 1
-				calendar[9].semanas = array_count.octubre
-				calendar[9].id_propiedad = element.id_propiedad
-			}
-			if (initial_date.getMonth() + 1 == 11) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Noviembre") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
-							}
-						})
-					}
-				})
-				array_count.noviembre += 1
-				calendar[10].semanas = array_count.noviembre
-				calendar[10].id_propiedad = element.id_propiedad
-			}
-			if (initial_date.getMonth() + 1 == 12) {
-				calendar.forEach(cal => {
-					if (cal.mes == "Diciembre") {
-						cal.dias.forEach(dia => {
-							if (dia.dia >= initial_date.getDate() && dia.dia <= finish_date.getDate()) {
-								dia.tipo = element.tipo
-								dia._id = element._id
-							}
-						})
-					}
-				})
-				array_count.diciembre += 1
-				calendar[11].semanas = array_count.diciembre
-				calendar[11].id_propiedad = element.id_propiedad
+						}) */
+						calendarPrototipe("Febrero", initial_date, finish_date, element)
+						array_count.febrero += 1
+						calendar[1].año = year
+						calendar[1].semanas = array_count.febrero
+						calendar[1].id_propiedad = element.id_propiedad
+						break;
+					case 3:
+						calendarPrototipe("Marzo", initial_date, finish_date, element)
+						array_count.marzo += 1
+						calendar[2].año = year
+						calendar[2].semanas = array_count.marzo
+						calendar[2].id_propiedad = element.id_propiedad
+						break;
+					case 4:
+						calendarPrototipe("Abril", initial_date, finish_date, element)
+						array_count.abril += 1
+						calendar[3].año = year
+						calendar[3].semanas = array_count.abril
+						calendar[3].id_propiedad = element.id_propiedad
+						break;
+					case 5:
+						calendarPrototipe("Mayo", initial_date, finish_date, element)
+						array_count.mayo += 1
+						calendar[4].año = year
+						calendar[4].semanas = array_count.mayo
+						calendar[4].id_propiedad = element.id_propiedad
+						break;
+					case 6:
+						calendarPrototipe("Junio", initial_date, finish_date, element)
+						array_count.junio += 1
+						calendar[5].año = year
+						calendar[5].semanas = array_count.junio
+						calendar[5].id_propiedad = element.id_propiedad
+						break;
+					case 7:
+						calendarPrototipe("Julio", initial_date, finish_date, element)
+						array_count.julio += 1
+						calendar[6].año = year
+						calendar[6].semanas = array_count.julio
+						calendar[6].id_propiedad = element.id_propiedad
+						break;
+					case 8:
+						calendarPrototipe("Agosto", initial_date, finish_date, element)
+						array_count.agosto += 1
+						calendar[7].año = year
+						calendar[7].semanas = array_count.agosto
+						calendar[7].id_propiedad = element.id_propiedad
+						break;
+					case 9:
+						calendarPrototipe("Septiembre", initial_date, finish_date, element)
+						array_count.septiembre += 1
+						calendar[8].año = year
+						calendar[8].semanas = array_count.septiembre
+						calendar[8].id_propiedad = element.id_propiedad
+						break;
+					case 10:
+						calendarPrototipe("Octubre", initial_date, finish_date, element)
+						array_count.octubre += 1
+						calendar[9].año = year
+						calendar[9].semanas = array_count.octubre
+						calendar[9].id_propiedad = element.id_propiedad
+						break;
+					case 11:
+						calendarPrototipe("Noviembre", initial_date, finish_date, element)
+						array_count.noviembre += 1
+						calendar[10].año = year
+						calendar[10].semanas = array_count.noviembre
+						calendar[10].id_propiedad = element.id_propiedad
+						break;
+					case 12:
+						calendarPrototipe("Diciembre", initial_date, finish_date, element)
+						array_count.diciembre += 1
+						calendar[11].año = year
+						calendar[11].semanas = array_count.diciembre
+						calendar[11].id_propiedad = element.id_propiedad
+						break;
+					default:
+						break;
+				}
 			}
 
 			calendar[0].id_propiedad = element.id_propiedad
+			calendar[0].año = year
 			calendar[1].id_propiedad = element.id_propiedad
+			calendar[1].año = year
 			calendar[2].id_propiedad = element.id_propiedad
+			calendar[2].año = year
 			calendar[3].id_propiedad = element.id_propiedad
+			calendar[3].año = year
 			calendar[4].id_propiedad = element.id_propiedad
+			calendar[4].año = year
 			calendar[5].id_propiedad = element.id_propiedad
+			calendar[5].año = year
 			calendar[6].id_propiedad = element.id_propiedad
+			calendar[6].año = year
 			calendar[7].id_propiedad = element.id_propiedad
+			calendar[7].año = year
 			calendar[8].id_propiedad = element.id_propiedad
+			calendar[8].año = year
 			calendar[9].id_propiedad = element.id_propiedad
+			calendar[9].año = year
 			calendar[10].id_propiedad = element.id_propiedad
+			calendar[10].año = year
 			calendar[11].id_propiedad = element.id_propiedad
-
-			/* info.push({
-				_id: element._id,
-				id_usuario: element.id_usuario,
-				id_propiedad: element.id_propiedad,
-				dia_inicio: initial_date.getDate(),
-				mes_inicio: initial_date.getMonth() + 1,
-				año_inicio: initial_date.getFullYear(),
-				dia_final: finish_date.getDate(),
-				mes_final: finish_date.getMonth() + 1,
-				año_final: finish_date.getFullYear(),
-				tipo: element.tipo
-			}) */
+			calendar[11].año = year
 		});
 
 		//mostrar el servicio
@@ -311,13 +265,20 @@ const getWeeksOfMonth = async (req, res) => {
 
 	response.forEach(element => {
 		const initial_date = new Date(element.fecha_inicio)
+		const finish_date = new Date(element.fecha_final)
+
+		const initial_date_parse = ((initial_date.getDate() > 9) ? initial_date.getDate() : ('0' + initial_date.getDate())) + '/' + (monthNames[initial_date.getMonth()])
+		const finish_date_parse = ((finish_date.getDate() > 9) ? finish_date.getDate() : ('0' + finish_date.getDate())) + '/' + (monthNames[finish_date.getMonth()])
 
 		console.log(initial_date.getMonth() + 1 === month)
 		if (initial_date.getFullYear() === year) {
 			if (initial_date.getMonth() + 1 === month) {
 				info.push({
 					_id: element._id,
-					tipo: element.tipo
+					tipo: element.tipo,
+					fecha_inicio: initial_date_parse,
+					fecha_final: finish_date_parse,
+					año: initial_date.getFullYear()
 				})
 			}
 		}

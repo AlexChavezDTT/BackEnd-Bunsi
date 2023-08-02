@@ -81,6 +81,9 @@ app.use('/api/auth', authRoutes)
 app.use('/api/ownerships', ownershipsRoutes)
 app.use('/api/calendar', calendarRoutes)
 
+//ARCHIVOS
+app.use('/public/users/avatars', express.static('storage/avatars'));
+
 //DEFINIR PUERTO
 const PORT = process.env.PORT || 4000
 
