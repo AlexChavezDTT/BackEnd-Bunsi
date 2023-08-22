@@ -43,6 +43,43 @@ const OwnershipSchema = new mongoose.Schema({
 		},
 		disponibles: {
 			type: String
+		},
+		impuestos: {
+			type: Number
+		},
+		fondoReserva: {
+			type: Number
+		},
+		segurosFinanzas: {
+			type: Number
+		},
+		fideicomiso: {
+			type: Number
+		},
+		bunsifee: {
+			type: Number
+		},
+		mantenimiento: {
+			limpieza: {
+				type: Number
+			},
+			reparaciones: {
+				type: Number
+			},
+			piscina: {
+				type: Number
+			}
+		},
+		renta_temporadas: {
+			alta: {
+				type: Number
+			},
+			media: {
+				type: Number
+			},
+			baja: {
+				type: Number
+			}
 		}
 	},
 	carouselImages: {

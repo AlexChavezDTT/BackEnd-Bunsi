@@ -98,8 +98,31 @@ const updateOwnerships = async (req, res) => {
 			return handleNotFoundError('El servicio no existe', res)
 		}
 
-		/* ownerships.name = req.body.name || ownerships.name
-		ownerships.price = req.body.price || ownerships.price */
+		ownerships.lat = req.body.lat || ownerships.lat
+		ownerships.lon = req.body.lon || ownerships.lon
+		ownerships.titulo = req.body.titulo || ownerships.titulo
+		ownerships.descripcion = req.body.descripcion || ownerships.descripcion
+		ownerships.descripcionEn = req.body.descripcionEn || ownerships.descripcionEn
+		ownerships.image = req.body.image || ownerships.image
+		ownerships.width = req.body.width || ownerships.width
+
+		ownerships.caracteristicas.metros = req.body.caracteristicas.metros || ownerships.caracteristicas.metros
+		ownerships.caracteristicas.habitaciones = req.body.caracteristicas.habitaciones || ownerships.caracteristicas.habitaciones
+		ownerships.caracteristicas.banos = req.body.caracteristicas.banos || ownerships.caracteristicas.banos
+		ownerships.caracteristicas.precioMXN = req.body.caracteristicas.precioMXN || ownerships.caracteristicas.precioMXN
+		ownerships.caracteristicas.precioUSD = req.body.caracteristicas.precioUSD || ownerships.caracteristicas.precioUSD
+		ownerships.caracteristicas.fracciones = req.body.caracteristicas.fracciones || ownerships.caracteristicas.fracciones
+		ownerships.caracteristicas.disponibles = req.body.caracteristicas.disponibles || ownerships.caracteristicas.disponibles
+		ownerships.caracteristicas.impuestos = req.body.caracteristicas.impuestos || ownerships.caracteristicas.impuestos
+		ownerships.caracteristicas.fondoReserva = req.body.caracteristicas.fondoReserva || ownerships.caracteristicas.fondoReserva
+		ownerships.caracteristicas.segurosFinanzas = req.body.caracteristicas.segurosFinanzas || ownerships.caracteristicas.segurosFinanzas
+		ownerships.caracteristicas.fideicomiso = req.body.caracteristicas.fideicomiso || ownerships.caracteristicas.fideicomiso
+		ownerships.caracteristicas.bunsifee = req.body.caracteristicas.bunsifee || ownerships.caracteristicas.bunsifee
+		ownerships.caracteristicas.mantenimiento = req.body.caracteristicas.mantenimiento || ownerships.caracteristicas.mantenimiento
+		ownerships.caracteristicas.renta_temporadas = req.body.caracteristicas.renta_temporadas || ownerships.caracteristicas.renta_temporadas
+		/* ownerships.caracteristicas.mantenimiento.limpieza = req.body.caracteristicas.mantenimiento.limpieza || ownerships.caracteristicas.mantenimiento.limpieza
+		ownerships.caracteristicas.mantenimiento.reparaciones = req.body.caracteristicas.mantenimiento.reparaciones || ownerships.caracteristicas.mantenimiento.reparaciones
+		ownerships.caracteristicas.mantenimiento.piscina = req.body.caracteristicas.mantenimiento.piscina || ownerships.caracteristicas.mantenimiento.piscina */
 
 		try {
 			await ownerships.save()

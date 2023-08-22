@@ -6,6 +6,7 @@ import servicesRoutes from './routes/servicesRoutes.js'
 import authRoutes from './routes/authRoutes.js'
 import ownershipsRoutes from './routes/ownershipsRoutes.js'
 import calendarRoutes from './routes/calendarRoutes.js'
+import calculationsRoutes from './routes/calculations.js'
 import { db } from './config/db.js'
 
 //CONFIGURAR LA APP
@@ -80,6 +81,7 @@ app.use('/api/services', servicesRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/ownerships', ownershipsRoutes)
 app.use('/api/calendar', calendarRoutes)
+app.use('/api/calculation', calculationsRoutes)
 
 //ARCHIVOS
 app.use('/public/users/avatars', express.static('storage/avatars'));

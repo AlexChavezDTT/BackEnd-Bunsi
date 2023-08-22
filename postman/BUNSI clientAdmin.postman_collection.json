@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "a7d02ef9-bd1b-4c89-900a-12f689e4f14e",
+		"name": "BUNSI clientAdmin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12105246"
+	},
+	"item": [
+		{
+			"name": "PROPIEDADES",
+			"item": [
+				{
+					"name": "CREAR Propiedad",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWM3M2EyMDRmMGYzMWEyYmRhODQ0MSIsImlhdCI6MTY4OTAyMzY0NywiZXhwIjoxNjkxNjE1NjQ3fQ.EYVvdKj-FqFZRUG1TxSbqD3fyWV-tsTQ2557aQIBcE0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lat\": 20.6539385,\n    \"lon\": -87.1417374,\n    \"titulo\": \"Tulum 504\",\n    \"descripcion\": \"Tu depa en Playa del Carmen\",\n    \"descripcionEn\": \"Your apartment in Playa del Carmen\",\n    \"image\": \"/assets/nuevo/departamentos/Departamento5/CARRETE-14.jpg\",\n    \"width\": \"w-2/5\",\n    \"caracteristicas\": {\n      \"metros\": \"87\",\n      \"habitaciones\": \"2\",\n      \"banos\": \"2\",\n      \"precioMXN\": 1250052,\n      \"precioUSD\": \"62,502\",\n      \"fracciones\": \"6\",\n      \"disponibles\": \"2\"\n    },\n    \"carouselImages\": [\n      \"/assets/nuevo/departamentos/Departamento5/CARRETE-14.jpg\",\n        \"/assets/nuevo/departamentos/Departamento5/CARRETE-14-24.jpg\",\n        \"/assets/nuevo/departamentos/Departamento5/CARRETE-15.jpg\",\n        \"/assets/nuevo/departamentos/Departamento5/CARRETE-16.jpg\",\n        \"/assets/nuevo/departamentos/Departamento5/CARRETE-17.jpg\",\n        \"/assets/nuevo/departamentos/Departamento5/CARRETE-18.jpg\"\n    ],\n    \"conoceMas\": {\n      \"vision\": {\n        \"titulo\": \"Visión\",\n        \"image\": \"/images/propiedades/1.jpg \"\n      },\n      \"ubicacion\": {\n        \"titulo\": \"Ubicación\",\n        \"image\": \" /assets/nuevo/departamentos/Departamento5/MAPA-25.jpg\",\n        \"lat\":  20.637514,\n        \"lon\":  -87.064302\n      },\n      \"planos\": {\n        \"titulo\": \"Planos\",\n        \"image\": \"/assets/nuevo/departamentos/Departamento5/PLANO-26.png\"\n      },\n      \"specs\": {\n        \"titulo\": \"Especificaciones\",\n        \"natural\": {\n          \"playas\": [\n              {\"nombre\": \"Playa del Carmen\", \"kilometros\": \"200mts\" },\n              { \"nombre\": \"Playa Punta Esmeralda\", \"kilometros\": \"500mts\" },\n              { \"nombre\": \"Playacar\", \"kilometros\": \"1km\" },\n              { \"nombre\": \"Playa del Secreto\", \"kilometros\": \"10km\" },\n              { \"nombre\": \"Playa del Amor\", \"kilometros\": \"12km\" },\n              { \"nombre\": \"Punta Maroma\", \"kilometros\": \"15km\" },\n              { \"nombre\": \"Paal Mol Beach\", \"kilometros\": \"18km\" },\n              { \"nombre\": \"Playa del Puerto Morelos\", \"kilometros\": \"35km\" },\n              { \"nombre\": \"Playa Hex PU ha\", \"kilometros\": \"38km\" },\n              { \"nombre\": \"Playa Akumal\", \"kilometros\": \"39km\" },\n              { \"nombre\": \"Tulum Playa Paraiso\", \"kilometros\": \"65km\" },\n              { \"nombre\": \"Tulum Playa Ruinas\", \"kilometros\": \"64km\" },\n              { \"nombre\": \"Joyce Beach\", \"kilometros\": \"82km\" },\n              { \"nombre\": \"Playa Secreta Sian Ka'an\", \"kilometros\": \"128km\"},\n              { \"nombre\": \"Cozumel\", \"kilometros\": \"1 Hora\" },\n              { \"nombre\": \"Contoy\", \"kilometros\": \"1 Hora + 1 Hora\" },\n              { \"nombre\": \"Isla Mujeres\", \"kilometros\": \"30 Min + 1 Hora\" },\n              { \"nombre\": \"Holbox\", \"kilometros\": \"30 Min + 2 Horas\" }\n          ],\n          \"montañas\": [\n            {\"nombre\": \"Punta Venado\", \"kilometros\": \"24km\" },\n              {\"nombre\": \"Cenote dos ojos\", \"kilometros\": \"51km\" },\n              {\"nombre\": \"Aktun Chen\", \"kilometros\": \"40km\" },\n              {\"nombre\": \"Sac Actum\", \"kilometros\": \"54km\" },\n              {\"nombre\": \"Kantun Chi\", \"kilometros\": \"26km\" },\n              {\"nombre\": \"ChaaK Tun\", \"kilometros\": \"5km\" },\n              {\"nombre\": \"Gran Cenote\", \"kilometros\": \"67km\" },\n              {\"nombre\": \"Cenote Santa Cruz\", \"kilometros\": \"39km\" },\n              {\"nombre\": \"Labnaha\", \"kilometros\": \"52km\" },\n              { \"nombre\": \"Chikin Ha\", \"kilometros\": \"27km\" },\n              { \"nombre\": \"Kin Ha\", \"kilometros\": \"59km\" },\n              { \"nombre\": \"Zacil Ha\", \"kilometros\": \"71km\" },\n              { \"nombre\": \"Yax Muul\", \"kilometros\": \"52km\" },\n              { \"nombre\": \"Cenote Carabela\", \"kilometros\": \"65km\" }\n          ]\n        },\n        \"experiencias\": {\n          \"excursiones\": [\n            { \"nombre\": \"Islas marieta\" },\n            { \"nombre\": \"Yelapa\" },\n            { \"nombre\": \"Caleta\" },\n            { \"nombre\": \"Nado con delfines\" },\n            { \"nombre\": \"Majahuitas\" },\n            { \"nombre\": \"Buceo experiencia\" },\n            { \"nombre\": \"Contemplación de ballenas\" }\n          ],\n          \"tour\": [\n            { \"nombre\": \"Sayulita\" },\n            { \"nombre\": \"Cuervo Casa Tequila\" },\n            { \"nombre\": \"Vallarta Centro\" },\n            { \"nombre\": \"San Sebastian del Oeste\" },\n            { \"nombre\": \"Velero o Yate Privado\" }\n          ]\n        },\n        \"social\": {\n          \"restaurantes\": [\n            { \"nombre\": \"La Leche\" },\n            { \"nombre\": \"Porfirios\" },\n            { \"nombre\": \"Cafe des artistes\" },\n            { \"nombre\": \"The blue shrimp\" },\n            { \"nombre\": \"Karuma\" },\n            { \"nombre\": \"Juan Tiburon\" },\n            { \"nombre\": \"Mariscos el Gordo\" },\n            { \"nombre\": \"La Peska\" }\n          ],\n          \"tiendas\": [\n            { \"nombre\": \"La isla Shopping Village\", \"kilometros\": \"28km\"},\n            { \"nombre\": \"Galerias Vallarta\", \"kilometros\": \"25km\" }\n          ]\n        },\n        \"cultura\": {\n          \"musica\": [\n            { \"nombre\": \"Esculturas y murales en malecón de Puerto Vallarta\"},\n            { \"nombre\": \"Galeria Dante\" },\n            { \"nombre\": \"Galeria Caballito de mar\" },\n            { \"nombre\": \"Galeria Colectika\" },\n            { \"nombre\": \"Galeria Uno\" },\n            { \"nombre\": \"Teatro Vallarte Centro Cultural\" }\n          ],\n          \"deporte\": [\n            { \"nombre\": \"Buceo\" },\n            { \"nombre\": \"Snorkel\" },\n            { \"nombre\": \"Pesca deportiva\" },\n            { \"nombre\": \"Flyboard\" },\n            { \"nombre\": \"Surf\" },\n            { \"nombre\": \"Kite surf\" },\n            { \"nombre\": \"Golf\" }\n          ]\n        },\n        \"salud\": {\n          \"hospitales\": [\n            { \"nombre\": \"Spine Clinic\" },\n            { \"nombre\": \"Advance Medical Center\" },\n            { \"nombre\": \"CMQ Hospital\" },\n            { \"nombre\": \"San Mare Health Care Group\" }\n          ]\n        }\n      },\n      \"simulador\": {\n        \"titulo\": \"Simulador\",\n        \"image\": \"/assets/nuevo/departamentos/IMAGENES CATALOGO-13.png\",\n        \"inversion\": 208342,\n        \"costovivienda\": 5750\n      }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/ownerships",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"ownerships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OBTENER - Propiedades",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YzQxMTI5MjRhYWJhY2YyODM3NmVlZiIsImlhdCI6MTY5MDU3MTI5MywiZXhwIjoxNjkzMTYzMjkzfQ.aIwM7Z8___qWIsnPKAGJWZUpLHilrm82wUv8OrBX6VM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/ownerships",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"ownerships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OBTENER - Propiedad por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWM3M2EyMDRmMGYzMWEyYmRhODQ0MSIsImlhdCI6MTY5MTUxMjMwMiwiZXhwIjoxNjk0MTA0MzAyfQ.W2_QsjKs619afUjobMqGojt-YY5d0d9fS5kWTgZx-1s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/ownerships/64b06c45ac80e3c4e4e8186f",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"ownerships",
+								"64b06c45ac80e3c4e4e8186f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ELIMINAR - Propiedad por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWFkYzYxODZlYjI4NjQ0MzE5MmFmMCIsImlhdCI6MTY4ODkxOTI5MywiZXhwIjoxNjkxNTExMjkzfQ.wctt-cIpN8G16DKQ8sEGEAxuOM4LfcPYc-b8dYjjxWc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/ownerships/64a9d487e30bd532bd57a73e",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"ownerships",
+								"64a9d487e30bd532bd57a73e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ACTUALIZAR - Propiedad",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWM3M2EyMDRmMGYzMWEyYmRhODQ0MSIsImlhdCI6MTY5MTUxMjMwMiwiZXhwIjoxNjk0MTA0MzAyfQ.W2_QsjKs619afUjobMqGojt-YY5d0d9fS5kWTgZx-1s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"caracteristicas\":{\n        \"impuestos\":5674,\n        \"fondoReserva\":67988,\n        \"segurosFinanzas\":250000,\n        \"fideicomiso\":3456,\n        \"bunsifee\":23412,\n        \"mantenimiento\":{\n            \"limpieza\": 200,\n            \"reparaciones\": 200,\n            \"piscina\": 200\n        },\n        \"renta_temporadas\":{\n            \"alta\": 9000,\n            \"media\": 6600,\n            \"baja\": 4400\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/ownerships/64b06c45ac80e3c4e4e8186f",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"ownerships",
+								"64b06c45ac80e3c4e4e8186f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OBTENER - Propiedades por usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWM3M2EyMDRmMGYzMWEyYmRhODQ0MSIsImlhdCI6MTY4OTAyMzY0NywiZXhwIjoxNjkxNjE1NjQ3fQ.EYVvdKj-FqFZRUG1TxSbqD3fyWV-tsTQ2557aQIBcE0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/ownerships/user/64aadc6186eb286443192af0",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"ownerships",
+								"user",
+								"64aadc6186eb286443192af0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "AUTH - Registro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Miguel\",\n    \"email\":\"miguel@bunsi.com\",\n    \"password\":\"adminadmin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/register",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH - Verificar Cuenta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/auth/verify/1h6eu62pgajss8iach1g",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"verify",
+								"1h6eu62pgajss8iach1g"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH - Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"admin@bunsi.com\",\n    \"password\": \"adminadmin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/login",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH - Validar Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWFkYzYxODZlYjI4NjQ0MzE5MmFmMCIsImlhdCI6MTY4OTU1NzI2NSwiZXhwIjoxNjkyMTQ5MjY1fQ.yTv2Bw3d4Hv0uZZx96VqN_UAqGCosgpOT8z459Vimzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/auth/user",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - Actualizar Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWM3M2EyMDRmMGYzMWEyYmRhODQ0MSIsImlhdCI6MTY5MDk5MTAwOCwiZXhwIjoxNjkzNTgzMDA4fQ.wbXIYDRtUSXYSL1oQNviDuemyert7OKTzqondzKv6kM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"photo\":\"/public/users/avatars/userDummy.jpeg\"\n    /* \"properties\":[\n        {\n            \"id_propertie\": \"64b06c45ac80e3c4e4e8186f\"\n        }\n    ] */\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/update/64ac73a204f0f31a2bda8441",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"update",
+								"64ac73a204f0f31a2bda8441"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Calendar",
+			"item": [
+				{
+					"name": "CREAR - Calendario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWM3M2EyMDRmMGYzMWEyYmRhODQ0MSIsImlhdCI6MTY5MDk5MTAwOCwiZXhwIjoxNjkzNTgzMDA4fQ.wbXIYDRtUSXYSL1oQNviDuemyert7OKTzqondzKv6kM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_propiedad\": \"64b06c45ac80e3c4e4e8186f\",\n    \"id_usuario\":\"64ac73a204f0f31a2bda8441\",\n    \"fecha_inicio\":\"09/22/2024\",\n    \"fecha_final\":\"09/28/2024\",\n    \"tipo\":\"Sin asignar\",\n    \"temporada\":\"BAJA\",\n    \"semana\":39,\n    \"fecha_creacion\":\"01/08/2023\",\n    \"fecha_modificacion\":\"01/08/2023\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/calendar",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"calendar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OBTENER - Meses de calendario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWFkYzYxODZlYjI4NjQ0MzE5MmFmMCIsImlhdCI6MTY5MjY0NTU0NiwiZXhwIjoxNjk1MjM3NTQ2fQ.c9TgRtmSTHmw0gDmXJucsycMJO-vIPS6p6lDOu1e8hg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/calendar/months/64b06c45ac80e3c4e4e8186f/64aadc6186eb286443192af0/2024",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"calendar",
+								"months",
+								"64b06c45ac80e3c4e4e8186f",
+								"64aadc6186eb286443192af0",
+								"2024"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OBTENER - Semanas del mes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWFkYzYxODZlYjI4NjQ0MzE5MmFmMCIsImlhdCI6MTY5MjY0NTU0NiwiZXhwIjoxNjk1MjM3NTQ2fQ.c9TgRtmSTHmw0gDmXJucsycMJO-vIPS6p6lDOu1e8hg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/calendar/month/weeks/64b06c45ac80e3c4e4e8186f/64aadc6186eb286443192af0/2023/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"calendar",
+								"month",
+								"weeks",
+								"64b06c45ac80e3c4e4e8186f",
+								"64aadc6186eb286443192af0",
+								"2023",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CALCULATIONS",
+			"item": [
+				{
+					"name": "OBTENER - Calculos al mes por propiedad y usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWFkYzYxODZlYjI4NjQ0MzE5MmFmMCIsImlhdCI6MTY5MjY0NTU0NiwiZXhwIjoxNjk1MjM3NTQ2fQ.c9TgRtmSTHmw0gDmXJucsycMJO-vIPS6p6lDOu1e8hg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/calculation/month/weeks/64b06c45ac80e3c4e4e8186f/64aadc6186eb286443192af0/2023/11",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"calculation",
+								"month",
+								"weeks",
+								"64b06c45ac80e3c4e4e8186f",
+								"64aadc6186eb286443192af0",
+								"2023",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

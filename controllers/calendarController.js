@@ -278,6 +278,7 @@ const getWeeksOfMonth = async (req, res) => {
 					tipo: element.tipo,
 					fecha_inicio: initial_date_parse,
 					fecha_final: finish_date_parse,
+					temporada: element.temporada,
 					año: initial_date.getFullYear()
 				})
 			}
