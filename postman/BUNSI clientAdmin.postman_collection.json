@@ -80,7 +80,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWM3M2EyMDRmMGYzMWEyYmRhODQ0MSIsImlhdCI6MTY5MTUxMjMwMiwiZXhwIjoxNjk0MTA0MzAyfQ.W2_QsjKs619afUjobMqGojt-YY5d0d9fS5kWTgZx-1s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWFkYzYxODZlYjI4NjQ0MzE5MmFmMCIsImlhdCI6MTY5MjcxOTM5NCwiZXhwIjoxNjk1MzExMzk0fQ.3yFVDX6TeODE4KHk5LpqzloGAUsik9vam7qgLz_-Avo",
 									"type": "string"
 								}
 							]
@@ -464,9 +464,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{API_URL}}/calculation/month/weeks/64b06c45ac80e3c4e4e8186f/64aadc6186eb286443192af0/2023/11",
+							"raw": "{{API_RAILWAY}}/calculation/month/weeks/64b06c45ac80e3c4e4e8186f/64aadc6186eb286443192af0/2023/11",
 							"host": [
-								"{{API_URL}}"
+								"{{API_RAILWAY}}"
 							],
 							"path": [
 								"calculation",
